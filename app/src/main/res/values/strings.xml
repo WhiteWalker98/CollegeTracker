@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">College Tracker</string>
+    <string name="linear_layout">Linear Layout here</string>
+    <string-array name="drawer_items">
+        <item>Home</item>
+        <item>Edit Time-Table </item>
+        <item>Attendance record</item>
+        <item>Pointer Calculator</item>
+        <item>Tasks </item>
+
+    </string-array>
+</resources>
