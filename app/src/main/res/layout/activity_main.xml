@@ -22,11 +22,12 @@
 
     <android.support.design.widget.NavigationView
         android:id="@+id/left_drawer"
-        android:padding="30dp"
+        android:paddingTop="30dp"
         android:layout_width="260dp"
-        android:layout_height="match_parent"
+        android:layout_height="fill_parent"
         android:layout_gravity="start"
         android:background="#ccc"
+        app:theme="@style/ThemeOverlay.AppCompat.navTheme"
         android:divider="@android:color/transparent"
         android:dividerHeight="1dp"
         app:menu="@menu/navigation_menu"/>

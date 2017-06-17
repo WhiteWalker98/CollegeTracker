@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:title=" Home"/>
-    <item android:title=" Edit Time-Table "/>
-    <item android:title=" Attendance record"/>
-    <item android:title=" Pointer Calculator"/>
-    <item android:title="Tasks"/>
-
+    <group android:checkableBehavior="single">
+        <item
+            android:title=" Home"
+            android:id="@+id/Home_button"/>
+        <item
+            android:title=" Attendance record"
+            android:id="@+id/Attemdance_button"/>
+        <item
+            android:title=" Pointer Calculator"
+            android:id="@+id/Pointer_button"/>
+        <item
+            android:title="Tasks"
+            android:id="@+id/Tasker_button"/>
+        <item
+            android:title=" Time-Table "
+            android:id="@+id/Edit_button">
+            <menu>
+                <item
+                    android:title="Edit Time-Table"/>
+                <item
+                    android:title="Add new Time-Table"/>
+                <item
+                    android:title="Delete Timetable"/>
+            </menu>
+        </item>
+    </group>
 </menu>

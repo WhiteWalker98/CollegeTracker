@@ -11,6 +11,9 @@
 
     <style name="AppBarStyle" parent="android:Widget.Holo.ActionBar.Solid">
         <item name="android:icon">@android:color/transparent </item>
-
+    </style>
+    <style name="ThemeOverlay.AppCompat.navTheme">
+        <item name="colorPrimary">#abb</item>
+        <item name="colorControlHighlight">#1c3a5e</item>
     </style>
 </resources>
