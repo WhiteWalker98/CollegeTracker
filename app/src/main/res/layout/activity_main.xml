@@ -3,10 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.vjti.collegetracker.MainActivity"
     android:id="@+id/drawer_layout">
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -16,16 +18,17 @@
             android:layout_height="wrap_content"
             android:text="@string/linear_layout" />
 
-    </LinearLayout>
+    </FrameLayout>
 
-    <ListView
+    <android.support.design.widget.NavigationView
         android:id="@+id/left_drawer"
         android:padding="30dp"
         android:layout_width="260dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#222"
+        android:background="#ccc"
         android:divider="@android:color/transparent"
-        android:dividerHeight="1dp" />
+        android:dividerHeight="1dp"
+        app:menu="@menu/navigation_menu"/>
 
 </android.support.v4.widget.DrawerLayout>
