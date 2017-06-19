@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id=item.getItemId();
         switch(id)
         {
-            case R.id.Attemdance_button:
+            case R.id.Attendance_button:
                 Log.i(TAG,"Attendance button clicked");
                 break;
             case R.id.Pointer_button:

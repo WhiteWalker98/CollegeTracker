@@ -3,4 +3,6 @@
     <string name="frame_layout">Frame Layout here</string>
     <string name="drawer_open">Open Drawer</string>
     <string name="drawer_close">Close Drawer</string>
+    <string name="title_activity_create_timetable">CreateTimetable</string>
+    <string name="add_subject_button_text">Add a subject/course</string>
 </resources>
