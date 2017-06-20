@@ -18,11 +18,14 @@
             android:id="@+id/Edit_button">
             <menu>
                 <item
-                    android:title=" Edit Time-Table"/>
+                    android:title=" Edit Time-Table"
+                    android:id="@+id/edit_timetable"/>
                 <item
-                    android:title=" Add new Time-Table"/>
+                    android:title=" Add new Time-Table"
+                    android:id="@+id/add_timetable"/>
                 <item
-                    android:title=" Delete Timetable"/>
+                    android:title=" Delete Timetable"
+                    android:id="@+id/delete_timetable"/>
             </menu>
         </item>
     </group>

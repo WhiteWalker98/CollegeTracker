@@ -1,5 +1,6 @@
 package com.vjti.collegetracker;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -56,6 +57,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.Tasker_button:
                 Log.i(TAG,"Tasks button clicked");
+                break;
+            case R.id.edit_timetable
+                    :
+                startActivity(new Intent(MainActivity.this, CreateTimetable.class));
                 break;
         }
         return true;

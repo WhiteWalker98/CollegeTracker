@@ -5,4 +5,10 @@
     <string name="drawer_close">Close Drawer</string>
     <string name="title_activity_create_timetable">CreateTimetable</string>
     <string name="add_subject_button_text">Add a subject/course</string>
+    <string name="course_header">Course Details</string>
+    <string name="course_name">Course name : </string>
+    <string name="course_shorthand">Course short-hand : </string>
+    <string name="course_shorthand_hint">A small abbreviation of subject name : </string>
+    <string name="course_credits">Course credits : </string>
+    <string name="course_professor">Course Professor : </string>>
 </resources>
