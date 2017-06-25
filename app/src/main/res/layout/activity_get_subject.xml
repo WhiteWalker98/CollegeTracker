@@ -1,58 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="30dp"
-    android:orientation="vertical"
-    tools:context="com.vjti.collegetracker.GetSubjectActivity">
+    android:layout_height="match_parent">
 
-    <TextView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="@string/course_header"
-        style="@style/AppTheme.fontStyle"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/course_name"
-        style="@style/AppTheme.fontStyle"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/course_name_editText"
-        android:paddingBottom="5dp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/course_credits"
-        style="@style/AppTheme.fontStyle"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:id="@+id/course_credits_editText"
-        android:paddingBottom="5dp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/course_shorthand"
-        style="@style/AppTheme.fontStyle"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/course_shorthand_hint"
-        android:paddingBottom="5dp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/course_professor"
-        style="@style/AppTheme.fontStyle"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/course_professor_editText"
-        android:paddingBottom="5dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="30dp"
+        tools:context="com.vjti.collegetracker.GetSubjectActivity">
 
-</LinearLayout>
+        <TextView
+            style="@style/AppTheme.fontStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:text="@string/course_header"
+            android:textAlignment="center" />
+
+        <TextView
+            style="@style/AppTheme.fontStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/course_name" />
+
+        <EditText
+            android:id="@+id/course_name_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            style="@style/AppTheme.fontStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/course_credits" />
+
+        <EditText
+            android:id="@+id/course_credits_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            style="@style/AppTheme.fontStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/course_shorthand" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/course_shorthand_hint"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            style="@style/AppTheme.fontStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/course_professor" />
+
+        <EditText
+            android:id="@+id/course_professor_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp" />
+        <TextView
+            style="@style/AppTheme.fontStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_lectures_text_view"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/lecture_1_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
+                android:paddingRight="8dp"
+                android:hint="@string/lecture_type"/>
+            <EditText
+                android:id="@+id/lecture_1_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:paddingBottom="8dp"
+                android:paddingRight="4dp"
+                android:hint="@string/start_time"/>
+            <EditText
+                android:id="@+id/lecture_1_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:paddingBottom="8dp"
+                android:paddingRight="4dp"
+                android:hint="@string/end_time"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/save_button_text"
+            tools:text="Save and Proceed" />
+
+    </LinearLayout>
+</ScrollView>

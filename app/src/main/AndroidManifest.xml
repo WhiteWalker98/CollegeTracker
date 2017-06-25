@@ -20,7 +20,7 @@
             android:name=".CreateTimetable"
             android:label="@string/title_activity_create_timetable"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".GetSubjectActivity"></activity>
+        <activity android:name=".GetSubjectActivity" />
     </application>
 
 </manifest>

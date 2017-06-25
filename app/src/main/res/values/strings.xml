@@ -11,4 +11,9 @@
     <string name="course_shorthand_hint">A small abbreviation of subject name : </string>
     <string name="course_credits">Course credits : </string>
     <string name="course_professor">Course Professor : </string>>
+    <string name="save_button_text">Save and Proceed </string>
+    <string name="add_lectures_text_view">Add lecture details below </string>
+    <string name="lecture_type"> Type(Lab/Tutorial) </string>
+    <string name="start_time"> 00:00 </string>
+    <string name="end_time">01:00</string>
 </resources>
