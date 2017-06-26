@@ -16,9 +16,10 @@ public class TableDBSchema {
             public static final String Course_credits = "Course Credits";
             public static final String Course_shorthand = "Course Shorthand";
             public static final String Course_professor = "Course professor";
-            public static final String Lecture_time = "Lecture time";
+            public static final String Lecture_day = "Lecture day";
+            public static final String Lecture_time = "Lecture start time";
+            public static final String Lecture_end = "Lecture end time";
 
         }
     }
-
 }
