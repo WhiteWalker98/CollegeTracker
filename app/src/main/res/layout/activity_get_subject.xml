@@ -6,7 +6,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="30dp"
         tools:context="com.vjti.collegetracker.GetSubjectActivity">
@@ -29,7 +29,8 @@
             android:id="@+id/course_name_editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="8dp" />
+            android:paddingBottom="8dp"
+            android:inputType="text"/>
 
         <TextView
             style="@style/AppTheme.fontStyle"
@@ -66,42 +67,60 @@
             android:id="@+id/course_professor_editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="8dp" />
+            android:paddingBottom="8dp"
+            android:inputType="text"/>
+
         <TextView
             style="@style/AppTheme.fontStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/add_lectures_text_view"/>
+            android:text="@string/add_lectures_text_view" />
 
         <LinearLayout
+            android:id="@+id/lectures_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/lecture_1_type"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="8dp"
-                android:paddingRight="8dp"
-                android:hint="@string/lecture_type"/>
-            <EditText
-                android:id="@+id/lecture_1_start_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="time"
-                android:paddingBottom="8dp"
-                android:paddingRight="4dp"
-                android:hint="@string/start_time"/>
-            <EditText
-                android:id="@+id/lecture_1_end_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="time"
-                android:paddingBottom="8dp"
-                android:paddingRight="4dp"
-                android:hint="@string/end_time"/>
+                android:orientation="horizontal">
 
+                <EditText
+                    android:id="@+id/lecture_1_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/lecture_day"
+                    android:paddingBottom="8dp"
+                    android:paddingRight="8dp" />
+
+                <EditText
+                    android:id="@+id/lecture_1_start_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/start_time"
+                    android:inputType="time"
+                    android:paddingBottom="8dp"
+                    android:paddingRight="4dp" />
+
+                <EditText
+                    android:id="@+id/lecture_1_end_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/end_time"
+                    android:inputType="time"
+                    android:paddingBottom="8dp"
+                    android:paddingRight="4dp" />
+
+                <Button
+                    android:id="@+id/add_lecture_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:text="@string/add_lecture_button" />
+
+            </LinearLayout>
         </LinearLayout>
 
         <Button

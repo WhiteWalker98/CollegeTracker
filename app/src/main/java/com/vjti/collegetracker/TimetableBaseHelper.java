@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by sanidhya on 24/6/17.
+ * Created by Sanidhya on 24/6/17.
  */
 
 public class TimetableBaseHelper extends SQLiteOpenHelper {
@@ -24,6 +24,8 @@ public class TimetableBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database) {
 
+        database.execSQL("create table "+ TableDBSchema.TimeTable.NAME + "("
+            +"_id integer primary key auto increment");
     }
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion){
