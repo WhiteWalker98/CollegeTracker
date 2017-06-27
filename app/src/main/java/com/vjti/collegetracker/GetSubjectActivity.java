@@ -33,19 +33,33 @@ public class GetSubjectActivity extends AppCompatActivity {
                 EditText editText1= new EditText(context);
                 EditText editText2= new EditText(context);
                 EditText editText3= new EditText(context);
-                LinearLayout Horizontal_layout = new LinearLayout(context);
+                Button mButton = new Button(context);
+                final LinearLayout Horizontal_layout = new LinearLayout(context);
 
                 editText1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 editText2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 editText3.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 Horizontal_layout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
                 Horizontal_layout.setOrientation(LinearLayout.HORIZONTAL);
+                mButton.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                mButton.setText("-");
+
+                editText1.setHint(R.string.lecture_day);
+                editText2.setHint(R.string.start_time);
+                editText3.setHint(R.string.end_time);
 
                 mLinearLayout.addView(Horizontal_layout);
                 Horizontal_layout.addView(editText1);
                 Horizontal_layout.addView(editText2);
                 Horizontal_layout.addView(editText3);
+                Horizontal_layout.addView(mButton);
 
+                mButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mLinearLayout.removeView(Horizontal_layout);
+                    }
+                });
             }
         });
 

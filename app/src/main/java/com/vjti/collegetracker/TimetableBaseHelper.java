@@ -18,6 +18,7 @@ public class TimetableBaseHelper extends SQLiteOpenHelper {
 
 
     public TimetableBaseHelper(Context context){
+
         super(context,DATABASE_NAME, null, VERSION);
     }
 

@@ -29,8 +29,8 @@
             android:id="@+id/course_name_editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:paddingBottom="8dp" />
 
         <TextView
             style="@style/AppTheme.fontStyle"
@@ -49,32 +49,34 @@
             style="@style/AppTheme.fontStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/course_shorthand" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/course_shorthand_hint"
-            android:paddingBottom="8dp" />
-
-        <TextView
-            style="@style/AppTheme.fontStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="@string/course_professor" />
 
         <EditText
             android:id="@+id/course_professor_editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:paddingBottom="8dp" />
 
-        <TextView
-            style="@style/AppTheme.fontStyle"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/add_lectures_text_view" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AppTheme.fontStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_lectures_text_view"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+
+            <Button
+                android:id="@+id/add_lecture_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/add_lecture_button" />
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/lectures_linear_layout"
@@ -82,45 +84,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/lecture_1_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/lecture_day"
-                    android:paddingBottom="8dp"
-                    android:paddingRight="8dp" />
-
-                <EditText
-                    android:id="@+id/lecture_1_start_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/start_time"
-                    android:inputType="time"
-                    android:paddingBottom="8dp"
-                    android:paddingRight="4dp" />
-
-                <EditText
-                    android:id="@+id/lecture_1_end_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/end_time"
-                    android:inputType="time"
-                    android:paddingBottom="8dp"
-                    android:paddingRight="4dp" />
-
-                <Button
-                    android:id="@+id/add_lecture_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:text="@string/add_lecture_button" />
-
-            </LinearLayout>
         </LinearLayout>
 
         <Button
