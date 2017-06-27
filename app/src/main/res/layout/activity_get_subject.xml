@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout android:id="@+id/main_linear_layout"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,8 +29,8 @@
             android:id="@+id/course_name_editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:paddingBottom="8dp" />
+            android:paddingBottom="8dp"
+            android:inputType="text"/>
 
         <TextView
             style="@style/AppTheme.fontStyle"
@@ -73,17 +73,12 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true" />
 
-            <Button
-                android:id="@+id/add_lecture_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-<<<<<<< HEAD
-                android:layout_alignParentEnd="true"
-=======
-                android:layout_alignParentend="true"
->>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
-                android:text="@string/add_lecture_button" />
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/add_lecture_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:text="@string/add_lecture_button" />
 
         <LinearLayout
             android:id="@+id/lectures_linear_layout"

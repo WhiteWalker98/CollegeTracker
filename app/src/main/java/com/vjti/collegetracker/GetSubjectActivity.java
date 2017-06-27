@@ -1,12 +1,12 @@
 package com.vjti.collegetracker;
 
 import android.content.Context;
-import android.app.FragmentManager;
+import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-<<<<<<< HEAD
-=======
+
 import android.view.Gravity;
 >>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
 import android.view.View;
@@ -18,50 +18,33 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-=======
+public class GetSubjectActivity extends AppCompatActivity {
 
-import java.util.ArrayList;
-import java.util.IllegalFormatException;
-import java.util.Iterator;
-import java.util.List;
-
->>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
-public class GetSubjectActivity extends AppCompatActivity implements TimePickerFragment.OnCompleteListener {
-    boolean flag;
-    String TAG = "LOG_TAG";
-    EditText mCourseName;
-    EditText mCourseProfessor;
-    EditText mCourseCredits;
-    TextView mAddText;
     Button mSaveButton;
-<<<<<<< HEAD
-=======
+
     Button button2;
     Button button3;
->>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
     Button mAddButton;
     LinearLayout mLinearLayout;
     Course course = new Course();
     // List<Lecture> lectureList = new ArrayList<>();
     // View view;
     int plus_counter = 0;
-<<<<<<< HEAD
     int pass_id =0;
-=======
->>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
-
     private final String DIALOG_DATE = "DialogDate";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_subject);
+
+        mLinearLayout=(LinearLayout)findViewById(R.id.lectures_linear_layout);
+
         final Context context= getApplicationContext();
         mLinearLayout = (LinearLayout) findViewById(R.id.lectures_linear_layout);
         mAddText = (TextView) findViewById(R.id.add_lecture_text_view);
@@ -81,15 +64,18 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
         mAddButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                EditText editText1= new EditText(context);
+                EditText editText2= new EditText(context);
+                EditText editText3= new EditText(context);
+                Button mButton = new Button(context);
+                final LinearLayout Horizontal_layout = new LinearLayout(context);
 
                 Lecture lecture = new Lecture();
-<<<<<<< HEAD
                 course.addLectureToCourse(plus_counter, lecture);
                 // Log.i(TAG, "after lecture list");
                 Spinner spinner1 = new Spinner(context);
                 final Button button2 = new Button(context);
                 final Button button3 = new Button(context);
-=======
                 // Log.i(TAG, "before lecture list");
                 lecture.setRemoved(false);
                 course.addLectureToCourse(plus_counter, lecture);
@@ -97,18 +83,14 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
                 Spinner spinner1 = new Spinner(context);
                 button2 = new Button(context);
                 button3 = new Button(context);
->>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
                 final Button mButton = new Button(context);
                 Log.i(TAG, "" + plus_counter);
 
                 final LinearLayout Horizontal_layout = new LinearLayout(context);
-<<<<<<< HEAD
                 mButton.setId(1000 + plus_counter);
                 button2.setId(2000 + plus_counter);
                 button3.setId(3000 + plus_counter);
-=======
                 mButton.setId(100 + plus_counter);
->>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
                 plus_counter++;
 
                 ArrayAdapter<String> weekAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, WeekList);
@@ -135,11 +117,8 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
                     @Override
                     public void onClick(View v) {
                         mLinearLayout.removeView(Horizontal_layout);
-<<<<<<< HEAD
                         int counterC = mButton.getId() % 1000;
-=======
                         int counterC = mButton.getId() % 100;
->>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
                         Log.i(TAG, "counter C on minus button = " + counterC);
                         course.getCourseLectures().get(counterC).setRemoved(true);
                     }
@@ -149,7 +128,6 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
                     @Override
                     public void onClick(View v) {
                         flag = true;
-<<<<<<< HEAD
                         pass_id = button2.getId();
                         FragmentManager fragmentManager = getFragmentManager();
                         TimePickerFragment dialog = new TimePickerFragment();
@@ -161,11 +139,9 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
 //                                button2.setText(time);
 //                            }
 //                        };
-=======
                         FragmentManager fragmentManager = getFragmentManager();
                         TimePickerFragment dialog = new TimePickerFragment();
                         dialog.show(fragmentManager, DIALOG_DATE);
->>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
                     }
                 });
 
@@ -173,16 +149,12 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
                     @Override
                     public void onClick(View v) {
                         flag = false;
-<<<<<<< HEAD
                         pass_id = button3.getId();
-=======
->>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
                         FragmentManager fragmentManager = getFragmentManager();
                         TimePickerFragment dialog = new TimePickerFragment();
                         dialog.show(fragmentManager, DIALOG_DATE);
                     }
                 });
-<<<<<<< HEAD
             }
         });
 
@@ -259,8 +231,6 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
 //                    }
 //                    view = mLinearLayout.getChildAt(++i);
 //                }
-=======
->>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
             }
         });
 
@@ -390,7 +360,6 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
     int convertTime(String sTime) {
         return Integer.parseInt(sTime.split("\\:")[0]) * 60 + Integer.parseInt(sTime.split("\\:")[1]);
     }
-<<<<<<< HEAD
 
     @Override
     public void onComplete(int hourOfDay, int minute) {
@@ -445,6 +414,4 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
     int convertTime(String sTime) {
         return Integer.parseInt(sTime.split("\\:")[0]) * 60 + Integer.parseInt(sTime.split("\\:")[1]);
     }
-=======
->>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
 }
