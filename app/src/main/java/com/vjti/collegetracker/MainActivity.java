@@ -1,5 +1,7 @@
 package com.vjti.collegetracker;
 
+import android.app.FragmentManager;
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -12,9 +14,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Button;
+
+import static com.vjti.collegetracker.R.layout.pointer_fragment;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -47,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(MenuItem item){
         int id=item.getItemId();
+        FragmentManager fragmentManager = getFragmentManager();
         switch(id)
         {
             case R.id.Attendance_button:
@@ -54,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.Pointer_button:
                 Log.i(TAG,"Pointer button clicked");
+                fragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container,new Pointer())
+                        .commit();
                 break;
             case R.id.Tasker_button:
                 Log.i(TAG,"Tasks button clicked");

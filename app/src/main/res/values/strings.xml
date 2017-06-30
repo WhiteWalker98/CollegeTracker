@@ -16,4 +16,17 @@
     <string name="lecture_type"> Type(Lab/Tutorial) </string>
     <string name="start_time"> 00:00 </string>
     <string name="end_time">01:00</string>
+    <string name="subject_1">Subject_1</string>
+    <string name="subject_2">Subject_2</string>
+    <string name="subject_3">Subject_3</string>
+    <string name="subject_4">Subject_4</string>
+    <string name="subject_5">Subject_5</string>
+    <string name="subject_6">Subject_6</string>
+    <string name="subject_7">Subject_7</string>
+    <string name="subject_8">Subject_8</string>
+    <string name="subject_9">Subject_9</string>
+    <string name="subject_10">Subject_10</string>
+    <string name="subject_11">Subject_11</string>
+    <string name="hint">Enter</string>
+    <string name="Calculate">Calculate</string>
 </resources>
