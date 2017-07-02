@@ -104,7 +104,7 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
     @Override
     public void onComplete(int hourOfDay, int minute) {
         String time = (minute < 10) ? (Integer.toString(hourOfDay) + ":0" + Integer.toString(minute)) : (Integer.toString(hourOfDay) + ":" + Integer.toString(minute));
-        if (flag == true)
+        if (flag)
             button2.setText(time);
         else
             button3.setText(time);
