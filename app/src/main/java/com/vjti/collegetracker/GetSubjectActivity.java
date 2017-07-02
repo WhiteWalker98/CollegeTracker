@@ -32,8 +32,6 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
     Button mSaveButton;
     Button button2;
     Button button3;
-    Button button2;
-    Button button3;
     Button mAddButton;
     LinearLayout mLinearLayout;
     Course course = new Course();
