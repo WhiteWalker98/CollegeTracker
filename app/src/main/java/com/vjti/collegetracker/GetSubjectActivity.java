@@ -2,13 +2,15 @@ package com.vjti.collegetracker;
 
 import android.content.Context;
 import android.content.Intent;
+import android.app.FragmentManager;
+import android.database.sqlite.SQLiteDatabase;
+import android.icu.util.Calendar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
 import android.view.Gravity;
->>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -23,11 +25,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Date;
 
-public class GetSubjectActivity extends AppCompatActivity {
-
+public class GetSubjectActivity extends AppCompatActivity implements TimePickerFragment.OnCompleteListener {
+    boolean flag;
     Button mSaveButton;
-
+    Button button2;
+    Button button3;
     Button button2;
     Button button3;
     Button mAddButton;
@@ -150,6 +154,27 @@ public class GetSubjectActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         flag = false;
                         pass_id = button3.getId();
+                        FragmentManager fragmentManager = getFragmentManager();
+                        TimePickerFragment dialog = new TimePickerFragment();
+                        dialog.show(fragmentManager, DIALOG_DATE);
+                    }
+                });
+
+                button2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        flag = true;
+                        FragmentManager fragmentManager = getFragmentManager();
+                        TimePickerFragment dialog = new TimePickerFragment();
+                        dialog.show(fragmentManager, DIALOG_DATE);
+
+                    }
+                });
+
+                button3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        flag = false;
                         FragmentManager fragmentManager = getFragmentManager();
                         TimePickerFragment dialog = new TimePickerFragment();
                         dialog.show(fragmentManager, DIALOG_DATE);
