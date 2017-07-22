@@ -9,7 +9,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +28,11 @@ import java.util.Date;
 
 public class GetSubjectActivity extends AppCompatActivity implements TimePickerFragment.OnCompleteListener {
     boolean flag;
+    String TAG = "LOG_TAG";
+    EditText mCourseName;
+    EditText mCourseProfessor;
+    EditText mCourseCredits;
+    TextView mAddText;
     Button mSaveButton;
     Button button2;
     Button button3;
@@ -40,6 +44,7 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
     int plus_counter = 0;
     int pass_id =0;
     private final String DIALOG_DATE = "DialogDate";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +97,6 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
                 mButton.setId(1000 + plus_counter);
                 button2.setId(2000 + plus_counter);
                 button3.setId(3000 + plus_counter);
-                mButton.setId(100 + plus_counter);
                 plus_counter++;
 
                 ArrayAdapter<String> weekAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, WeekList);
@@ -119,7 +123,6 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
                     @Override
                     public void onClick(View v) {
                         mLinearLayout.removeView(Horizontal_layout);
-                        int counterC = mButton.getId() % 1000;
                         int counterC = mButton.getId() % 100;
                         Log.i(TAG, "counter C on minus button = " + counterC);
                         course.getCourseLectures().get(counterC).setRemoved(true);
@@ -169,96 +172,12 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
                     }
                 });
 
-                button3.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        flag = false;
-                        FragmentManager fragmentManager = getFragmentManager();
-                        TimePickerFragment dialog = new TimePickerFragment();
-                        dialog.show(fragmentManager, DIALOG_DATE);
-                    }
-                });
+
             }
         });
 
         mSaveButton=(Button)findViewById(R.id.save_button);
-        mSaveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i(TAG, "No. of child views " + mLinearLayout.getChildCount());
-                course.setCourseName(mCourseName.getText().toString());
-                course.setCourseProfessor(mCourseProfessor.getText().toString());
-                try {
-                    float credits = (Float.parseFloat(mCourseCredits.getText().toString()));
-                    if (credits > 4 || credits < 0)
-                        throw new NumberFormatException();
-                    else
-                        course.setCourseCredits(credits);
-                } catch (NumberFormatException e) {
-                    Log.e(TAG, "Display warning");
-                    mCourseCredits.setError("Input should be between 0.0 and 4.0");
-                    return;
-                }
-                List<Lecture> lectureList = course.getCourseLectures();
-                Log.d(TAG, "before : " + lectureList.size());
-                for (Iterator<Lecture> iterator = lectureList.iterator(); iterator.hasNext(); ) {
-                    Lecture lecture = iterator.next();
-                    Log.d(TAG, "lecture isRemoved() = " + lecture.isRemoved());
-                    if (lecture.isRemoved()) {
-                        iterator.remove();
-                    }
-                }
-                Log.d(TAG, "after : " + lectureList.size());
-                course.setCourseLectures(lectureList);
-//                Iterator<Lecture> iterator= lectureList.iterator();
-//                    while(iterator.hasNext()) {
-//                        if(iterator.next().isRemoved())
-//                        lectureList.remove(iterator);
-//                }
-//                course.setCourseLectures(lectureList);
-
-//                for(Lecture l : course.getCourseLectures()){
-//                    if(l.isRemoved())
-//                        course.getCourseLectures().remove(l);
-//                }
-                final int totalChildViews = mLinearLayout.getChildCount();
-
-                if (totalChildViews == 0) {
-                    mAddText.requestFocus();
-                    mAddText.setError("No lectures have been added");
-                    return;
-                }
-                Log.i(TAG, "totalChildViews = " + totalChildViews);
-                for (int i = 0; i < totalChildViews; i++) {
-                    course.getCourseLectures().set(i, getLecture(mLinearLayout.getChildAt(i)));
-                }
-                Log.d(TAG, course.getCourseLectures().size() + "");
-
-                LectureStore lectureStore = new LectureStore(getApplicationContext());
-                List<Lecture> lectureList1 = course.getCourseLectures();
-                for (Lecture lecture : lectureList1) {
-                    lectureStore.addLecture(course, lecture);
-                }
-                finish();
-//                for (int i = 0; i < totalChildViews; i++)
-//                    Log.d(TAG, lectureList.get(i).getLectureStart() + " " + lectureList.get(i).isRemoved());
-//
-//                int i = 0;
-//                view = mLinearLayout.getChildAt(i);
-//                while(view!=null){
-//                    if(view instanceof Spinner){
-//                        //Process Spinner
-//                    }
-//                    if(view instanceof Button){
-//                        //Process TimePickerData
-//                    }
-//                    view = mLinearLayout.getChildAt(++i);
-//                }
-            }
-        });
-
-        mSaveButton=(Button)findViewById(R.id.save_button);
-        mSaveButton.setOnClickListener(new View.OnClickListener() {
+        mSaveButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "No. of child views " + mLinearLayout.getChildCount());
@@ -338,7 +257,9 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
     public void onComplete(int hourOfDay, int minute) {
         String time = (minute < 10) ? (Integer.toString(hourOfDay) + ":0" + Integer.toString(minute)) : (Integer.toString(hourOfDay) + ":" + Integer.toString(minute));
         if (flag) {
+            Log.i(TAG, "inside flag = true :1");
             button2.setText(time);
+            Log.i(TAG, "inside flag = true:2");
         } else {
             button3.setText(time);
             Log.i(TAG, "Inside flag =false");
@@ -351,11 +272,9 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
         ViewGroup vg = (ViewGroup) view;
         for (int i = 0; i < vg.getChildCount(); i++) {
 
-            View childView = vg.getChildAt(i);
-//            if (vg.getChildAt(i) instanceof LinearLayout) {
-//                return getLecture(vg.getChildAt(i));
-//          }
-            if (childView instanceof Spinner) {
+            if (vg.getChildAt(i) instanceof LinearLayout) {
+                return getLecture(vg.getChildAt(i));
+            } else if (vg.getChildAt(i) instanceof Spinner) {
                 flag = true;
                 String weekday = ((Spinner) childView).getSelectedItem().toString();
                 Log.i(TAG, "fetching spinner data " + weekday);
