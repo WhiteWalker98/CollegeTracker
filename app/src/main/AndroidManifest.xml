@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.vjti.collegetracker">
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,9 +17,9 @@
         </activity>
         <activity
             android:name=".CreateTimetable"
-            android:label="@string/title_activity_create_timetable"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".GetSubjectActivity" />
+            android:label="@string/title_activity_create_timetable" />
+        <activity
+            android:name=".GetSubjectActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
     </application>
-
 </manifest>
