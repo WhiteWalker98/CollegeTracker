@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -13,8 +14,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.IllegalFormatException;
+import java.util.Iterator;
 import java.util.List;
 
 public class GetSubjectActivity extends AppCompatActivity implements TimePickerFragment.OnCompleteListener {
@@ -23,26 +27,25 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
     EditText mCourseName;
     EditText mCourseProfessor;
     EditText mCourseCredits;
+    TextView mAddText;
     Button mSaveButton;
     Button button2;
     Button button3;
     Button mAddButton;
     LinearLayout mLinearLayout;
     Course course = new Course();
-    List<Lecture> lectureList = new ArrayList<>();
-    Lecture lecture = new Lecture();
-    View view;
-
+    // List<Lecture> lectureList = new ArrayList<>();
+    // View view;
     int plus_counter = 0;
 
     private final String DIALOG_DATE = "DialogDate";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_subject);
         final Context context= getApplicationContext();
         mLinearLayout = (LinearLayout) findViewById(R.id.lectures_linear_layout);
+        mAddText = (TextView) findViewById(R.id.add_lecture_text_view);
         mCourseName = (EditText) findViewById(R.id.course_name_editText);
         mCourseProfessor = (EditText) findViewById(R.id.course_professor_editText);
         mCourseCredits = (EditText) findViewById(R.id.course_credits_editText);
@@ -60,8 +63,10 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
             @Override
             public void onClick(View view){
 
+                Lecture lecture = new Lecture();
                 // Log.i(TAG, "before lecture list");
-                lectureList.add(plus_counter, lecture);
+                lecture.setRemoved(false);
+                course.addLectureToCourse(plus_counter, lecture);
                 // Log.i(TAG, "after lecture list");
                 Spinner spinner1 = new Spinner(context);
                 button2 = new Button(context);
@@ -98,8 +103,8 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
                     public void onClick(View v) {
                         mLinearLayout.removeView(Horizontal_layout);
                         int counterC = mButton.getId() % 100;
-                        Log.i(TAG, "counter C = " + counterC);
-                        lectureList.get(counterC).setRemoved(true);
+                        Log.i(TAG, "counter C on minus button = " + counterC);
+                        course.getCourseLectures().get(counterC).setRemoved(true);
                     }
                 });
 
@@ -126,22 +131,67 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
         });
 
         mSaveButton=(Button)findViewById(R.id.save_button);
-        mSaveButton.setOnClickListener(new View.OnClickListener(){
+        mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 Log.i(TAG, "No. of child views " + mLinearLayout.getChildCount());
                 course.setCourseName(mCourseName.getText().toString());
                 course.setCourseProfessor(mCourseProfessor.getText().toString());
-                course.setCourseCredits(Float.parseFloat(mCourseCredits.getText().toString()));
-                for (Lecture l : lectureList) {
-                    if (l.isRemoved())
-                        lectureList.remove(l);
+                try {
+                    float credits = (Float.parseFloat(mCourseCredits.getText().toString()));
+                    if (credits > 4 || credits < 0)
+                        throw new NumberFormatException();
+                    else
+                        course.setCourseCredits(credits);
+                } catch (NumberFormatException e) {
+                    Log.e(TAG, "Display warning");
+                    mCourseCredits.setError("Input should be between 0.0 and 4.0");
+                    return;
                 }
-                //for(Lecture lecture : lectureList){
-                lecture = getLecture(mLinearLayout);
-                lectureList.add(lecture);
-                //  }
+                List<Lecture> lectureList = course.getCourseLectures();
+                Log.d(TAG, "before : " + lectureList.size());
+                for (Iterator<Lecture> iterator = lectureList.iterator(); iterator.hasNext(); ) {
+                    Lecture lecture = iterator.next();
+                    Log.d(TAG, "lecture isRemoved() = " + lecture.isRemoved());
+                    if (lecture.isRemoved()) {
+                        iterator.remove();
+                    }
+                }
+                Log.d(TAG, "after : " + lectureList.size());
+                course.setCourseLectures(lectureList);
+//                Iterator<Lecture> iterator= lectureList.iterator();
+//                    while(iterator.hasNext()) {
+//                        if(iterator.next().isRemoved())
+//                        lectureList.remove(iterator);
+//                }
+//                course.setCourseLectures(lectureList);
 
+//                for(Lecture l : course.getCourseLectures()){
+//                    if(l.isRemoved())
+//                        course.getCourseLectures().remove(l);
+//                }
+                final int totalChildViews = mLinearLayout.getChildCount();
+
+                if (totalChildViews == 0) {
+                    mAddText.requestFocus();
+                    mAddText.setError("No lectures have been added");
+                    return;
+                }
+                Log.i(TAG, "totalChildViews = " + totalChildViews);
+                for (int i = 0; i < totalChildViews; i++) {
+                    course.getCourseLectures().set(i, getLecture(mLinearLayout.getChildAt(i)));
+                }
+                Log.d(TAG, course.getCourseLectures().size() + "");
+
+                LectureStore lectureStore = new LectureStore(getApplicationContext());
+                List<Lecture> lectureList1 = course.getCourseLectures();
+                for (Lecture lecture : lectureList1) {
+                    lectureStore.addLecture(course, lecture);
+                }
+                finish();
+//                for (int i = 0; i < totalChildViews; i++)
+//                    Log.d(TAG, lectureList.get(i).getLectureStart() + " " + lectureList.get(i).isRemoved());
+//
 //                int i = 0;
 //                view = mLinearLayout.getChildAt(i);
 //                while(view!=null){
@@ -161,9 +211,7 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
     public void onComplete(int hourOfDay, int minute) {
         String time = (minute < 10) ? (Integer.toString(hourOfDay) + ":0" + Integer.toString(minute)) : (Integer.toString(hourOfDay) + ":" + Integer.toString(minute));
         if (flag) {
-            Log.i(TAG, "inside flag = true :1");
             button2.setText(time);
-            Log.i(TAG, "inside flag = true:2");
         } else {
             button3.setText(time);
             Log.i(TAG, "Inside flag =false");
@@ -176,27 +224,37 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
         ViewGroup vg = (ViewGroup) view;
         for (int i = 0; i < vg.getChildCount(); i++) {
 
-            if (vg.getChildAt(i) instanceof LinearLayout) {
-                return getLecture(vg.getChildAt(i));
-            } else if (vg.getChildAt(i) instanceof Spinner) {
+            View childView = vg.getChildAt(i);
+//            if (vg.getChildAt(i) instanceof LinearLayout) {
+//                return getLecture(vg.getChildAt(i));
+//          }
+            if (childView instanceof Spinner) {
                 flag = true;
-                Log.e(TAG, "fetching spinner data");
-                l.setLectureDay("Monday");//add Day to lecture
-            } else if (vg.getChildAt(i) instanceof Button) {
+                Log.i(TAG, "fetching spinner data");
+                l.setLectureDay(((Spinner) childView).getSelectedItem().toString());//add Day to lecture
+            } else if (childView instanceof Button) {
                 if (((Button) vg.getChildAt(i)).getText().toString() == "-")
                     break;
                 if (flag) {
                     //use timepicker to assign start time
-                    Log.i(TAG, "inside function flag = true start");
-                    l.setLectureStart(600);
+                    //Log.i(TAG, "inside function flag = true start");
+                    String start = ((Button) childView).getText().toString();
+                    l.setLectureStart(convertTime(start));
                     flag = false;
                 } else {
                     //use timepicker to assign end time
-                    Log.i(TAG, "inside function flag = false end");
-                    l.setLectureEnd(660);
+                    Log.i(TAG, "testing 10.00 = " + convertTime("10:00"));
+                    String end = ((Button) childView).getText().toString();
+                    l.setLectureEnd(convertTime(end));
                 }
             }
         }
         return l;
+    }
+
+    int convertTime(String sTime) {
+
+        int time = Integer.parseInt(sTime.split("\\:")[0]) * 60 + Integer.parseInt(sTime.split("\\:")[1]);
+        return time;
     }
 }
