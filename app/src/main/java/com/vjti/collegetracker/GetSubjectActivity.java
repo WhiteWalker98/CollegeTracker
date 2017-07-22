@@ -230,10 +230,11 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
 //          }
             if (childView instanceof Spinner) {
                 flag = true;
-                Log.i(TAG, "fetching spinner data");
-                l.setLectureDay(((Spinner) childView).getSelectedItem().toString());//add Day to lecture
+                String weekday = ((Spinner) childView).getSelectedItem().toString();
+                Log.i(TAG, "fetching spinner data " + weekday);
+                l.setLectureDay(weekday);//add Day to lecture
             } else if (childView instanceof Button) {
-                if (((Button) vg.getChildAt(i)).getText().toString() == "-")
+                if (((Button) vg.getChildAt(i)).getText().toString().equals("-"))
                     break;
                 if (flag) {
                     //use timepicker to assign start time
@@ -253,8 +254,6 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
     }
 
     int convertTime(String sTime) {
-
-        int time = Integer.parseInt(sTime.split("\\:")[0]) * 60 + Integer.parseInt(sTime.split("\\:")[1]);
-        return time;
+        return Integer.parseInt(sTime.split("\\:")[0]) * 60 + Integer.parseInt(sTime.split("\\:")[1]);
     }
 }

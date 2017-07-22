@@ -7,8 +7,13 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.vjti.collegetracker.TableDBSchema.TimeTable;
+
+import java.sql.Time;
+
 /**
  * Created by Sanidhya on 24/6/17.
+ * The Helper Class
  */
 
 public class TimetableBaseHelper extends SQLiteOpenHelper {
@@ -18,19 +23,33 @@ public class TimetableBaseHelper extends SQLiteOpenHelper {
 
 
     public TimetableBaseHelper(Context context){
-
         super(context,DATABASE_NAME, null, VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase database) {
 
-        database.execSQL("create table "+ TableDBSchema.TimeTable.NAME + "("
-            +"_id integer primary key auto increment");
+        database.execSQL("create table " + TimeTable.NAME + " ( " +
+                "_id integer primary key autoincrement, " +
+                TimeTable.Cols.UUID + ", " +
+                TimeTable.Cols.Course_name + ", " +
+                TimeTable.Cols.Course_credits + ", " +
+                TimeTable.Cols.Course_professor + ", " +
+                TimeTable.Cols.Lecture_day + ", " +
+                TimeTable.Cols.Lecture_time + ", " +
+                TimeTable.Cols.Lecture_end + ", " +
+                " unique ( " +
+                TimeTable.Cols.UUID + ", " +
+                TimeTable.Cols.Course_name + ", " +
+                TimeTable.Cols.Lecture_day + ", " +
+                TimeTable.Cols.Lecture_time + ", " +
+                TimeTable.Cols.Lecture_end +
+                " ) on conflict replace " +
+                ");"
+        );
     }
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion){
-
 
     }
 }

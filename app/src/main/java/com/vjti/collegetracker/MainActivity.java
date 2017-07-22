@@ -47,8 +47,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(MenuItem item){
         int id=item.getItemId();
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         switch(id)
         {
+
+            case R.id.Home_button:
+                Log.i(TAG, "Home button clicked");
+                break;
             case R.id.Attendance_button:
                 Log.i(TAG,"Attendance button clicked");
                 break;
@@ -63,16 +68,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(MainActivity.this, CreateTimetable.class));
                 break;
         }
+        mDrawerLayout.closeDrawers();
         return true;
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        if(mDrawerToggle.onOptionsItemSelected(item)){
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
 
     }
 

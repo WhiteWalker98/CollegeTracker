@@ -17,4 +17,14 @@
     <string name="start_time"> 00:00 </string>
     <string name="end_time">01:00</string>
     <string name="add_lecture_button">+</string>
+    <string name="time_picker_title">Select Time</string>
+    <!--<string-array name="days_of_week">-->
+    <!--<item>Monday</item>-->
+    <!--<item>Tuesday</item>-->
+    <!--<item>Wednesday</item>-->
+    <!--<item>Thursday</item>-->
+    <!--<item>Friday</item>-->
+    <!--<item>Saturday</item>-->
+    <!--<item>Sunday</item>-->
+    <!--</string-array>-->
 </resources>
