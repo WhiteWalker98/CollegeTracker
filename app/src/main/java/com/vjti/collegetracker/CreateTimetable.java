@@ -24,12 +24,9 @@ public class CreateTimetable extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
         if(getSupportActionBar()!= null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-=======
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
->>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
         setContentView(R.layout.activity_create_timetable);
         Context context = getApplicationContext();
         mCourseLinearLayout = (LinearLayout) findViewById(R.id.Courses_container);
@@ -66,7 +63,6 @@ public class CreateTimetable extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-<<<<<<< HEAD
 //        mCourseLinearLayout = (LinearLayout) findViewById(R.id.Courses_container);
 //
 //        LectureStore lectureStore = new LectureStore(getApplicationContext());
@@ -78,7 +74,6 @@ public class CreateTimetable extends AppCompatActivity {
 //            textView.setGravity(Gravity.CENTER);
 //            mCourseLinearLayout.addView(textView);
 //        }
-=======
         mCourseLinearLayout = (LinearLayout) findViewById(R.id.Courses_container);
 
         LectureStore lectureStore = new LectureStore(getApplicationContext());
@@ -90,8 +85,6 @@ public class CreateTimetable extends AppCompatActivity {
             textView.setGravity(Gravity.CENTER);
             mCourseLinearLayout.addView(textView);
         }
->>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
-
     }
 
     @Override

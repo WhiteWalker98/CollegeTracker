@@ -9,8 +9,6 @@ import android.util.Log;
 import com.vjti.collegetracker.TableDBSchema.TimeTable;
 
 import java.sql.Time;
-import com.vjti.collegetracker.TableDBSchema.TimeTable;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,13 +44,6 @@ public class LectureStore {
         contentValues.put(TimeTable.Cols.Lecture_day, lecture.getLectureDay());
         contentValues.put(TimeTable.Cols.Lecture_time, lecture.getLectureStart());
         contentValues.put(TimeTable.Cols.Lecture_end, lecture.getLectureEnd());
-        contentValues.put(DBKEY, lecture.getLectureUUID().toString());
-        contentValues.put(DBKEY, course.getCourseName());
-        contentValues.put(DBKEY, course.getCourseCredits());
-        contentValues.put(DBKEY, course.getCourseProfessor());
-        contentValues.put(DBKEY, lecture.getLectureDay());
-        contentValues.put(DBKEY, lecture.getLectureStart());
-        contentValues.put(DBKEY, lecture.getLectureEnd());
         return contentValues;
     }
 
@@ -109,10 +100,7 @@ public class LectureStore {
     }
 
     public List<Course> getAllCourses() {
-<<<<<<< HEAD
 
-=======
->>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
         List<Course> courseList = new ArrayList<>();
         LectureCursorWrapper cursor = queryLectures(null, null);
         int i = 0;
@@ -129,10 +117,7 @@ public class LectureStore {
                 i++;
             }
         } finally {
-<<<<<<< HEAD
 //            Log.i(TAG, "value of getInt(0)= " + cursor.getInt(0));
-=======
->>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
             cursor.close();
         }
         return courseList;
