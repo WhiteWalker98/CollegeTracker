@@ -29,6 +29,7 @@ public class TimetableBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database) {
 
+<<<<<<< HEAD
 //        database.execSQL("CREATE TABLE " + TimeTable.NAME + " ( " +
 //                "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
 //                TimeTable.Cols.UUID + ", " +
@@ -50,12 +51,29 @@ public class TimetableBaseHelper extends SQLiteOpenHelper {
                 TimeTable.Cols.Lecture_time + " INTEGER, "+
                 TimeTable.Cols.Lecture_end + " INTEGER, " +
                 " unique ( " +
+=======
+        database.execSQL("create table " + TimeTable.NAME + " ( " +
+                "_id integer primary key autoincrement, " +
+                TimeTable.Cols.UUID + ", " +
+                TimeTable.Cols.Course_name + ", " +
+                TimeTable.Cols.Course_credits + ", " +
+                TimeTable.Cols.Course_professor + ", " +
+                TimeTable.Cols.Lecture_day + ", " +
+                TimeTable.Cols.Lecture_time + ", " +
+                TimeTable.Cols.Lecture_end + ", " +
+                " unique ( " +
+                TimeTable.Cols.UUID + ", " +
+>>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
                 TimeTable.Cols.Course_name + ", " +
                 TimeTable.Cols.Lecture_day + ", " +
                 TimeTable.Cols.Lecture_time + ", " +
                 TimeTable.Cols.Lecture_end +
                 " ) on conflict replace " +
+<<<<<<< HEAD
                         ");"
+=======
+                ");"
+>>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
         );
     }
     @Override

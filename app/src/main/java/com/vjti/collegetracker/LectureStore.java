@@ -5,7 +5,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+<<<<<<< HEAD
 import android.util.Log;
+=======
+>>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
 
 import com.vjti.collegetracker.TableDBSchema.TimeTable;
 
@@ -20,17 +23,28 @@ import java.util.List;
 
 public class LectureStore {
 
+<<<<<<< HEAD
     private String TAG = "LOG_TAG";
     private static final String DBKEY = "LECTURES";
     private SQLiteDatabase Database;
 
     public LectureStore(Context context) {
         Database = new TimetableBaseHelper(context)
+=======
+    private static final String DBKEY = "LECTURES";
+    private SQLiteDatabase Database;
+    private Context mContext;
+
+    public LectureStore(Context context) {
+        mContext = context.getApplicationContext();
+        Database = new TimetableBaseHelper(mContext)
+>>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
                 .getWritableDatabase();
     }
 
     private static ContentValues getContentValues(Course course, Lecture lecture) {
         ContentValues contentValues = new ContentValues();
+<<<<<<< HEAD
         contentValues.put(TimeTable.Cols.UUID, lecture.getLectureUUID().toString());
         contentValues.put(TimeTable.Cols.Course_name, course.getCourseName());
         contentValues.put(TimeTable.Cols.Course_credits, course.getCourseCredits());
@@ -38,6 +52,15 @@ public class LectureStore {
         contentValues.put(TimeTable.Cols.Lecture_day, lecture.getLectureDay());
         contentValues.put(TimeTable.Cols.Lecture_time, lecture.getLectureStart());
         contentValues.put(TimeTable.Cols.Lecture_end, lecture.getLectureEnd());
+=======
+        contentValues.put(DBKEY, lecture.getLectureUUID().toString());
+        contentValues.put(DBKEY, course.getCourseName());
+        contentValues.put(DBKEY, course.getCourseCredits());
+        contentValues.put(DBKEY, course.getCourseProfessor());
+        contentValues.put(DBKEY, lecture.getLectureDay());
+        contentValues.put(DBKEY, lecture.getLectureStart());
+        contentValues.put(DBKEY, lecture.getLectureEnd());
+>>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
         return contentValues;
     }
 
@@ -64,6 +87,17 @@ public class LectureStore {
                 new String[]{uuidString});
     }
 
+<<<<<<< HEAD
+=======
+//    public String[] extractCourse() {
+//        String[] CourseNames = new String[]{};
+//        String[] columns = {TimeTable.Cols.Course_name};
+//        Cursor cursor = Database.query(true, TimeTable.NAME, columns, null, null, null, null, null, null);
+//
+//        return CourseNames;
+//    }
+
+>>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
     private LectureCursorWrapper queryLectures(String whereClause, String[] whereArgs) {
         Cursor cursor = Database.query(TimeTable.NAME, null, whereClause, whereArgs, null, null, TimeTable.Cols.Course_name);
         return new LectureCursorWrapper(cursor);
@@ -86,7 +120,10 @@ public class LectureStore {
     }
 
     public List<Course> getAllCourses() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
         List<Course> courseList = new ArrayList<>();
         LectureCursorWrapper cursor = queryLectures(null, null);
         int i = 0;
@@ -103,7 +140,10 @@ public class LectureStore {
                 i++;
             }
         } finally {
+<<<<<<< HEAD
 //            Log.i(TAG, "value of getInt(0)= " + cursor.getInt(0));
+=======
+>>>>>>> ebddcfafde4a8233ef4e907aa347f7cc4de1654b
             cursor.close();
         }
         return courseList;
