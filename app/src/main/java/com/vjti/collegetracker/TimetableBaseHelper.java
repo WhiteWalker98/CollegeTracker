@@ -29,23 +29,33 @@ public class TimetableBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database) {
 
-        database.execSQL("create table " + TimeTable.NAME + " ( " +
-                "_id integer primary key autoincrement, " +
-                TimeTable.Cols.UUID + ", " +
-                TimeTable.Cols.Course_name + ", " +
-                TimeTable.Cols.Course_credits + ", " +
-                TimeTable.Cols.Course_professor + ", " +
-                TimeTable.Cols.Lecture_day + ", " +
-                TimeTable.Cols.Lecture_time + ", " +
-                TimeTable.Cols.Lecture_end + ", " +
+//        database.execSQL("CREATE TABLE " + TimeTable.NAME + " ( " +
+//                "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                TimeTable.Cols.UUID + ", " +
+//                TimeTable.Cols.Course_name + ", " +
+//                TimeTable.Cols.Course_credits + ", " +
+//                TimeTable.Cols.Course_professor + ", " +
+//                TimeTable.Cols.Lecture_day + ", " +
+//                TimeTable.Cols.Lecture_time + ", " +
+//                TimeTable.Cols.Lecture_end +
+//                ");"
+//        );
+        database.execSQL("CREATE TABLE "+ TimeTable.NAME + "( "+
+                        "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                TimeTable.Cols.UUID + " TEXT, " +
+                TimeTable.Cols.Course_name + " TEXT, "+
+                TimeTable.Cols.Course_credits + " DECIMAL, "+
+                TimeTable.Cols.Course_professor + " TEXT, "+
+                TimeTable.Cols.Lecture_day + " TEXT, "+
+                TimeTable.Cols.Lecture_time + " INTEGER, "+
+                TimeTable.Cols.Lecture_end + " INTEGER, " +
                 " unique ( " +
-                TimeTable.Cols.UUID + ", " +
                 TimeTable.Cols.Course_name + ", " +
                 TimeTable.Cols.Lecture_day + ", " +
                 TimeTable.Cols.Lecture_time + ", " +
                 TimeTable.Cols.Lecture_end +
                 " ) on conflict replace " +
-                ");"
+                        ");"
         );
     }
     @Override

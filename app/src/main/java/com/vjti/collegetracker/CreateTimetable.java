@@ -24,7 +24,8 @@ public class CreateTimetable extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar()!= null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_create_timetable);
         Context context = getApplicationContext();
         mCourseLinearLayout = (LinearLayout) findViewById(R.id.Courses_container);
@@ -61,17 +62,17 @@ public class CreateTimetable extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mCourseLinearLayout = (LinearLayout) findViewById(R.id.Courses_container);
-
-        LectureStore lectureStore = new LectureStore(getApplicationContext());
-        courseList = lectureStore.getAllCourses();
-        for (Course course : courseList) {
-            TextView textView = new TextView(getApplicationContext());
-            textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            textView.setText(course.getCourseName());
-            textView.setGravity(Gravity.CENTER);
-            mCourseLinearLayout.addView(textView);
-        }
+//        mCourseLinearLayout = (LinearLayout) findViewById(R.id.Courses_container);
+//
+//        LectureStore lectureStore = new LectureStore(getApplicationContext());
+//        courseList = lectureStore.getAllCourses();
+//        for (Course course : courseList) {
+//            TextView textView = new TextView(getApplicationContext());
+//            textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//            textView.setText(course.getCourseName());
+//            textView.setGravity(Gravity.CENTER);
+//            mCourseLinearLayout.addView(textView);
+//        }
 
     }
 

@@ -5,7 +5,6 @@ import android.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -15,11 +14,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-import java.util.IllegalFormatException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class GetSubjectActivity extends AppCompatActivity implements TimePickerFragment.OnCompleteListener {
     boolean flag;
@@ -29,14 +28,13 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
     EditText mCourseCredits;
     TextView mAddText;
     Button mSaveButton;
-    Button button2;
-    Button button3;
     Button mAddButton;
     LinearLayout mLinearLayout;
     Course course = new Course();
     // List<Lecture> lectureList = new ArrayList<>();
     // View view;
     int plus_counter = 0;
+    int pass_id =0;
 
     private final String DIALOG_DATE = "DialogDate";
     @Override
@@ -64,18 +62,18 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
             public void onClick(View view){
 
                 Lecture lecture = new Lecture();
-                // Log.i(TAG, "before lecture list");
-                lecture.setRemoved(false);
                 course.addLectureToCourse(plus_counter, lecture);
                 // Log.i(TAG, "after lecture list");
                 Spinner spinner1 = new Spinner(context);
-                button2 = new Button(context);
-                button3 = new Button(context);
+                final Button button2 = new Button(context);
+                final Button button3 = new Button(context);
                 final Button mButton = new Button(context);
                 Log.i(TAG, "" + plus_counter);
 
                 final LinearLayout Horizontal_layout = new LinearLayout(context);
-                mButton.setId(100 + plus_counter);
+                mButton.setId(1000 + plus_counter);
+                button2.setId(2000 + plus_counter);
+                button3.setId(3000 + plus_counter);
                 plus_counter++;
 
                 ArrayAdapter<String> weekAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, WeekList);
@@ -102,7 +100,7 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
                     @Override
                     public void onClick(View v) {
                         mLinearLayout.removeView(Horizontal_layout);
-                        int counterC = mButton.getId() % 100;
+                        int counterC = mButton.getId() % 1000;
                         Log.i(TAG, "counter C on minus button = " + counterC);
                         course.getCourseLectures().get(counterC).setRemoved(true);
                     }
@@ -112,9 +110,17 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
                     @Override
                     public void onClick(View v) {
                         flag = true;
+                        pass_id = button2.getId();
                         FragmentManager fragmentManager = getFragmentManager();
                         TimePickerFragment dialog = new TimePickerFragment();
                         dialog.show(fragmentManager, DIALOG_DATE);
+//                        TimePickerFragment.OnCompleteListener myListener = new TimePickerFragment.OnCompleteListener() {
+//                            @Override
+//                            public void onComplete(int hourOfDay, int minute) {
+//                                String time = (minute < 10) ? (Integer.toString(hourOfDay) + ":0" + Integer.toString(minute)) : (Integer.toString(hourOfDay) + ":" + Integer.toString(minute));
+//                                button2.setText(time);
+//                            }
+//                        };
                     }
                 });
 
@@ -122,6 +128,7 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
                     @Override
                     public void onClick(View v) {
                         flag = false;
+                        pass_id = button3.getId();
                         FragmentManager fragmentManager = getFragmentManager();
                         TimePickerFragment dialog = new TimePickerFragment();
                         dialog.show(fragmentManager, DIALOG_DATE);
@@ -211,10 +218,13 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
     public void onComplete(int hourOfDay, int minute) {
         String time = (minute < 10) ? (Integer.toString(hourOfDay) + ":0" + Integer.toString(minute)) : (Integer.toString(hourOfDay) + ":" + Integer.toString(minute));
         if (flag) {
+            Log.i(TAG, "Button 2 TAG (inside onComplete)=" + pass_id);
+            Button button2 = (Button) findViewById(pass_id);
             button2.setText(time);
         } else {
+            Log.i(TAG, "Button 3 TAG (inside onComplete)=" + pass_id);
+            Button button3 = (Button) findViewById(pass_id);
             button3.setText(time);
-            Log.i(TAG, "Inside flag =false");
         }
     }
 
@@ -240,12 +250,13 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
                     //use timepicker to assign start time
                     //Log.i(TAG, "inside function flag = true start");
                     String start = ((Button) childView).getText().toString();
+                    Log.i(TAG, "testing" + start + " = " + convertTime(start));
                     l.setLectureStart(convertTime(start));
                     flag = false;
                 } else {
                     //use timepicker to assign end time
-                    Log.i(TAG, "testing 10.00 = " + convertTime("10:00"));
                     String end = ((Button) childView).getText().toString();
+                    Log.i(TAG, "testing" + end + " = " + convertTime(end));
                     l.setLectureEnd(convertTime(end));
                 }
             }
