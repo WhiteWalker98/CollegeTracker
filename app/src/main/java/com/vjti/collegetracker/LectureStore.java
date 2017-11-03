@@ -22,13 +22,7 @@ public class LectureStore {
     private String TAG = "LOG_TAG";
     private static final String DBKEY = "LECTURES";
     private SQLiteDatabase Database;
-
-    public LectureStore(Context context) {
-        Database = new TimetableBaseHelper(context)
-    private static final String DBKEY = "LECTURES";
-    private SQLiteDatabase Database;
     private Context mContext;
-
     public LectureStore(Context context) {
         mContext = context.getApplicationContext();
         Database = new TimetableBaseHelper(mContext)

@@ -74,15 +74,12 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
                 EditText editText1= new EditText(context);
                 EditText editText2= new EditText(context);
                 EditText editText3= new EditText(context);
-                Button mButton = new Button(context);
+                final Button mButton = new Button(context);
                 final LinearLayout Horizontal_layout = new LinearLayout(context);
 
                 Lecture lecture = new Lecture();
                 course.addLectureToCourse(plus_counter, lecture);
                 // Log.i(TAG, "after lecture list");
-                Spinner spinner1 = new Spinner(context);
-                final Button button2 = new Button(context);
-                final Button button3 = new Button(context);
                 // Log.i(TAG, "before lecture list");
                 lecture.setRemoved(false);
                 course.addLectureToCourse(plus_counter, lecture);
@@ -90,10 +87,8 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
                 Spinner spinner1 = new Spinner(context);
                 button2 = new Button(context);
                 button3 = new Button(context);
-                final Button mButton = new Button(context);
                 Log.i(TAG, "" + plus_counter);
 
-                final LinearLayout Horizontal_layout = new LinearLayout(context);
                 mButton.setId(1000 + plus_counter);
                 button2.setId(2000 + plus_counter);
                 button3.setId(3000 + plus_counter);
@@ -144,8 +139,6 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
 //                                button2.setText(time);
 //                            }
 //                        };
-                        FragmentManager fragmentManager = getFragmentManager();
-                        TimePickerFragment dialog = new TimePickerFragment();
                         dialog.show(fragmentManager, DIALOG_DATE);
                     }
                 });
@@ -253,55 +246,51 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
         });
     }
 
-    @Override
-    public void onComplete(int hourOfDay, int minute) {
-        String time = (minute < 10) ? (Integer.toString(hourOfDay) + ":0" + Integer.toString(minute)) : (Integer.toString(hourOfDay) + ":" + Integer.toString(minute));
-        if (flag) {
-            Log.i(TAG, "inside flag = true :1");
-            button2.setText(time);
-            Log.i(TAG, "inside flag = true:2");
-        } else {
-            button3.setText(time);
-            Log.i(TAG, "Inside flag =false");
-        }
-    }
+//    @Override
+//    public void onComplete(int hourOfDay, int minute) {
+//        String time = (minute < 10) ? (Integer.toString(hourOfDay) + ":0" + Integer.toString(minute)) : (Integer.toString(hourOfDay) + ":" + Integer.toString(minute));
+//        if (flag) {
+//            Log.i(TAG, "inside flag = true :1");
+//            button2.setText(time);
+//            Log.i(TAG, "inside flag = true:2");
+//        } else {
+//            button3.setText(time);
+//            Log.i(TAG, "Inside flag =false");
+//        }
+//    }
 
-    private Lecture getLecture(View view) {
-        Lecture l = new Lecture();
-        boolean flag = false;
-        ViewGroup vg = (ViewGroup) view;
-        for (int i = 0; i < vg.getChildCount(); i++) {
-
-            if (vg.getChildAt(i) instanceof LinearLayout) {
-                return getLecture(vg.getChildAt(i));
-            } else if (vg.getChildAt(i) instanceof Spinner) {
-                flag = true;
-                String weekday = ((Spinner) childView).getSelectedItem().toString();
-                Log.i(TAG, "fetching spinner data " + weekday);
-                l.setLectureDay(weekday);//add Day to lecture
-            } else if (childView instanceof Button) {
-                if (((Button) vg.getChildAt(i)).getText().toString().equals("-"))
-                    break;
-                if (flag) {
-                    //use timepicker to assign start time
-                    //Log.i(TAG, "inside function flag = true start");
-                    String start = ((Button) childView).getText().toString();
-                    l.setLectureStart(convertTime(start));
-                    flag = false;
-                } else {
-                    //use timepicker to assign end time
-                    Log.i(TAG, "testing 10.00 = " + convertTime("10:00"));
-                    String end = ((Button) childView).getText().toString();
-                    l.setLectureEnd(convertTime(end));
-                }
-            }
-        }
-        return l;
-    }
-
-    int convertTime(String sTime) {
-        return Integer.parseInt(sTime.split("\\:")[0]) * 60 + Integer.parseInt(sTime.split("\\:")[1]);
-    }
+//    private Lecture getLecture(View view) {
+//        Lecture l = new Lecture();
+//        boolean flag = false;
+//        ViewGroup vg = (ViewGroup) view;
+//        for (int i = 0; i < vg.getChildCount(); i++) {
+//
+//            if (vg.getChildAt(i) instanceof LinearLayout) {
+//                return getLecture(vg.getChildAt(i));
+//            } else if (vg.getChildAt(i) instanceof Spinner) {
+//                flag = true;
+//                String weekday = ((Spinner) childView).getSelectedItem().toString();
+//                Log.i(TAG, "fetching spinner data " + weekday);
+//                l.setLectureDay(weekday);//add Day to lecture
+//            } else if (childView instanceof Button) {
+//                if (((Button) vg.getChildAt(i)).getText().toString().equals("-"))
+//                    break;
+//                if (flag) {
+//                    //use timepicker to assign start time
+//                    //Log.i(TAG, "inside function flag = true start");
+//                    String start = ((Button) childView).getText().toString();
+//                    l.setLectureStart(convertTime(start));
+//                    flag = false;
+//                } else {
+//                    //use timepicker to assign end time
+//                    Log.i(TAG, "testing 10.00 = " + convertTime("10:00"));
+//                    String end = ((Button) childView).getText().toString();
+//                    l.setLectureEnd(convertTime(end));
+//                }
+//            }
+//        }
+//        return l;
+//    }
 
     @Override
     public void onComplete(int hourOfDay, int minute) {
