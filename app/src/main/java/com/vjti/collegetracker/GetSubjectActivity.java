@@ -78,7 +78,6 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
                 final LinearLayout Horizontal_layout = new LinearLayout(context);
 
                 Lecture lecture = new Lecture();
-                course.addLectureToCourse(plus_counter, lecture);
                 // Log.i(TAG, "after lecture list");
                 // Log.i(TAG, "before lecture list");
                 lecture.setRemoved(false);
