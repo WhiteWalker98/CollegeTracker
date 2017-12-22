@@ -67,7 +67,6 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
         WeekList.add("Friday");
         WeekList.add("Saturday");
         WeekList.add("Sunday");
-
         mAddButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -117,7 +116,7 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
                     @Override
                     public void onClick(View v) {
                         mLinearLayout.removeView(Horizontal_layout);
-                        int counterC = mButton.getId() % 100;
+                        int counterC = (int) mButton.getId() % 100;
                         Log.i(TAG, "counter C on minus button = " + counterC);
                         course.getCourseLectures().get(counterC).setRemoved(true);
                     }
@@ -290,7 +289,7 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
 //        }
 //        return l;
 //    }
-
+    //Call-back method to get data from TimePickerFragment
     @Override
     public void onComplete(int hourOfDay, int minute) {
         String time = (minute < 10) ? (Integer.toString(hourOfDay) + ":0" + Integer.toString(minute)) : (Integer.toString(hourOfDay) + ":" + Integer.toString(minute));
