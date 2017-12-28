@@ -2,6 +2,7 @@ package com.vjti.collegetracker;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CreateTimetable extends AppCompatActivity {
@@ -19,7 +21,8 @@ public class CreateTimetable extends AppCompatActivity {
     private Button AddSubjectButton;
     private LectureStore lectureStore;
     private LinearLayout mCourseLinearLayout;
-    private List<Course> courseList;
+
+
     String TAG = "LOG_TAG";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,21 +31,6 @@ public class CreateTimetable extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_create_timetable);
-        Context context = getApplicationContext();
-        mCourseLinearLayout = (LinearLayout) findViewById(R.id.Courses_container);
-
-        LectureStore lectureStore = new LectureStore(getApplicationContext());
-        courseList = lectureStore.getAllCourses();
-        Log.i(TAG, "Size of courseList = " + courseList.size());
-        for (Course course : courseList) {
-            TextView textView = new TextView(context);
-            Log.d(TAG, "Inside course printer " + course.getCourseName());
-            textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            textView.setText(course.getCourseName());
-            textView.setGravity(Gravity.CENTER);
-            mCourseLinearLayout.addView(textView);
-        }
-
         AddSubjectButton=(Button)findViewById(R.id.add_subject_button);
         AddSubjectButton.setOnClickListener(new View.OnClickListener(){
            @Override
@@ -59,10 +47,35 @@ public class CreateTimetable extends AppCompatActivity {
         mCourseLinearLayout = (LinearLayout) findViewById(R.id.Courses_container);
         mCourseLinearLayout.removeAllViews();
     }
-
+    protected void getCourses(){
+        mCourseLinearLayout = (LinearLayout) findViewById(R.id.Courses_container);
+        LectureStore lectureStore = new LectureStore(getApplicationContext());
+        ArrayList<String> courseList = lectureStore.getCourses();
+        Log.i(TAG, "Size of courseList = " + courseList.size());
+//        for (Course course : courseList) {
+//            TextView textView = new TextView(context);
+//            Log.d(TAG, "Inside course printer " + course.getCourseName());
+//            textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//            textView.setText(course.getCourseName());
+//            textView.setGravity(Gravity.CENTER);
+//            mCourseLinearLayout.addView(textView);
+//        }
+        for(String s : courseList){
+            TextView textView = new TextView(getApplicationContext());
+            Log.i(TAG, "printing lectures" + s);
+            textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            textView.setTextColor(Color.GRAY);
+            textView.setTextSize(20.5f);
+            textView.setPadding(0,10,0,10);
+            textView.setText(s);
+            textView.setGravity(Gravity.CENTER);
+            mCourseLinearLayout.addView(textView);
+        }
+    }
     @Override
     protected void onResume() {
         super.onResume();
+        getCourses();
 //        mCourseLinearLayout = (LinearLayout) findViewById(R.id.Courses_container);
 //
 //        LectureStore lectureStore = new LectureStore(getApplicationContext());
@@ -74,17 +87,17 @@ public class CreateTimetable extends AppCompatActivity {
 //            textView.setGravity(Gravity.CENTER);
 //            mCourseLinearLayout.addView(textView);
 //        }
-        mCourseLinearLayout = (LinearLayout) findViewById(R.id.Courses_container);
-
-        LectureStore lectureStore = new LectureStore(getApplicationContext());
-        courseList = lectureStore.getAllCourses();
-        for (Course course : courseList) {
-            TextView textView = new TextView(getApplicationContext());
-            textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            textView.setText(course.getCourseName());
-            textView.setGravity(Gravity.CENTER);
-            mCourseLinearLayout.addView(textView);
-        }
+//        mCourseLinearLayout = (LinearLayout) findViewById(R.id.Courses_container);
+//
+//        LectureStore lectureStore = new LectureStore(getApplicationContext());
+//        courseList = lectureStore.getAllCourses();
+//        for (Course course : courseList) {
+//            TextView textView = new TextView(getApplicationContext());
+//            textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//            textView.setText(course.getCourseName());
+//            textView.setGravity(Gravity.CENTER);
+//            mCourseLinearLayout.addView(textView);
+//        }
     }
 
     @Override

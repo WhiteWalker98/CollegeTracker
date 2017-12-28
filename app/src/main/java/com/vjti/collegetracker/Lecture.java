@@ -9,6 +9,9 @@ import java.util.UUID;
 public class Lecture {
 
     private UUID LectureUUID;
+    private String courseName;
+    private String courseProfessor;
+    private float courseCredits;
     private String LectureDay;
     private int LectureStart;
     private int LectureEnd;
@@ -16,17 +19,23 @@ public class Lecture {
 
     public Lecture() {
         this(UUID.randomUUID());
-//        LectureDay = "Monday";
-//        LectureStart=0;
-//        LectureEnd=0;
-//        isRemoved=false;
     }
 
     public Lecture(UUID uuid) {
         LectureUUID = uuid;
         isRemoved = false;
     }
+    public String getCourseName() {
+        return courseName;
+    }
 
+    public String getCourseProfessor() {
+        return courseProfessor;
+    }
+
+    public float getCourseCredits() {
+        return courseCredits;
+    }
     public UUID getLectureUUID() {
         return LectureUUID;
     }
@@ -37,6 +46,18 @@ public class Lecture {
 
     public void setRemoved(boolean removed) {
         isRemoved = removed;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public void setCourseProfessor(String courseProfessor) {
+        this.courseProfessor = courseProfessor;
+    }
+
+    public void setCourseCredits(float courseCredits) {
+        this.courseCredits = courseCredits;
     }
 
     public String getLectureDay() {
