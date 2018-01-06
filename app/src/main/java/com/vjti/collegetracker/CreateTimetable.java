@@ -27,10 +27,14 @@ public class CreateTimetable extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        lectureStore = new LectureStore(getApplicationContext());
+        //FOR ARROW BUTTON
         if(getSupportActionBar()!= null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_create_timetable);
+
+        //CODE FOR ACTIVITY STARTS
         AddSubjectButton=(Button)findViewById(R.id.add_subject_button);
         AddSubjectButton.setOnClickListener(new View.OnClickListener(){
            @Override
@@ -49,7 +53,6 @@ public class CreateTimetable extends AppCompatActivity {
     }
     protected void getCourses(){
         mCourseLinearLayout = (LinearLayout) findViewById(R.id.Courses_container);
-        LectureStore lectureStore = new LectureStore(getApplicationContext());
         ArrayList<String> courseList = lectureStore.getCourses();
         Log.i(TAG, "Size of courseList = " + courseList.size());
 //        for (Course course : courseList) {

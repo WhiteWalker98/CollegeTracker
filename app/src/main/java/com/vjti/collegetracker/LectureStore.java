@@ -139,8 +139,9 @@ public class LectureStore {
     protected ArrayList<String> getCourses(){
         Set<String> courseSet = new HashSet<>();
         ArrayList<Lecture> arrayList = getAllLectures();
-        for(Lecture l : arrayList)
+        for(Lecture l : arrayList) {
             courseSet.add(l.getCourseName());
+        }
         return new ArrayList<String>(courseSet);
     }
 }

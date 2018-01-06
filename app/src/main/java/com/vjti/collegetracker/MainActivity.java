@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,12 +21,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private NavigationView mNavigationView;
-    private final String TAG="TAG";
+    private final String TAG="MainActivity";
+
+    FragmentManager fragmentManager;
+    Fragment fragment ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDrawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
+        fragmentManager = getSupportFragmentManager();
+        fragment = fragmentManager.findFragmentById(R.id.fragment_container);
+        showFragment(fragment, fragmentManager);
 
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
@@ -52,7 +60,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         {
 
             case R.id.Home_button:
+//                selectedFragment = new HomeFragment();
+//                if(fragment == null || !(fragment instanceof HomeFragment)) {
+//                    fragment = new HomeFragment();
+//
+//                    fragmentManager.beginTransaction()
+//                            .add(R.id.fragment_container, fragment)
+//                            .commit();
+//                }
+                showFragment(fragment, fragmentManager);
                 Log.i(TAG, "Home button clicked");
+
                 break;
             case R.id.Attendance_button:
                 Log.i(TAG,"Attendance button clicked");
@@ -87,5 +105,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    private void showFragment(Fragment fragment, FragmentManager fragmentManager){
+        if(fragment == null || !(fragment instanceof HomeFragment)) {
+            fragment = new HomeFragment();
+
+            fragmentManager.beginTransaction()
+                    .add(R.id.fragment_container, fragment)
+                    .commit();
+        }
     }
 }

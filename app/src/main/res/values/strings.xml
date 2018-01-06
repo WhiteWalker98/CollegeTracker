@@ -19,6 +19,21 @@
     <string name="add_lecture_button">+</string>
     <string name="time_picker_title">Select Time</string>
     <string name="lecture_list_header">The following courses have been added: </string>
+    <string name="Monday">M</string>>
+    <string name="Tuesday">T</string>>
+    <string name="Wednesday">W</string>>
+    <string name="Thursday">T</string>>
+    <string name="Friday">F</string>>
+    <string name="Saturday">S</string>>
+    <string name="Sunday">S</string>>
+    <string name="Monday_land">MON</string>>
+    <string name="Tuesday_land">TUE</string>>
+    <string name="Wednesday_land">WED</string>>
+    <string name="Thursday_land">THU</string>>
+    <string name="Friday_land">FRI</string>>
+    <string name="Saturday_land">SAT</string>>
+    <string name="Sunday_land">SUN</string>>
+
     <!--<string-array name="days_of_week">-->
     <!--<item>Monday</item>-->
     <!--<item>Tuesday</item>-->

@@ -251,7 +251,7 @@ public class GetSubjectActivity extends AppCompatActivity implements TimePickerF
                 LectureStore lectureStore = new LectureStore(getApplicationContext());
                 lectureNames = convertToLowerCase(lectureStore.getCourses());
                 //Check if lecture already exists
-                if(lectureNames.contains(mCourseName.getText().toString().trim())){
+                if(lectureNames.contains(mCourseName.getText().toString().trim().toLowerCase())){
                     mCourseName.requestFocus();
                     mCourseName.setError("This course already exist!");
                     return;
