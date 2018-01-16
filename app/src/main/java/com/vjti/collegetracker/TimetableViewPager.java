@@ -36,13 +36,13 @@ public class TimetableViewPager extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position){
-            case 0: return "M";
-            case 1: return "T";
-            case 2: return "W";
-            case 3: return "T";
-            case 4: return "F";
-            case 5:
-            case 6: return "S";
+            case 0: return "MON";
+            case 1: return "TUE";
+            case 2: return "WED";
+            case 3: return "THU";
+            case 4: return "FRI";
+            case 5: return "SAT";
+            case 6: return "SUN";
         }
         return null;
     }
